@@ -665,6 +665,235 @@ body {
     font-size: 12px;
 }
 
+/* ========== Template: Fresh (简约清新) ========== */
+.tpl-fresh {
+    padding: 0;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.tpl-fresh .fresh-header {
+    background: #f0fdf4;
+    padding: 28px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #86efac;
+}
+
+.tpl-fresh .fresh-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.tpl-fresh .fresh-photo img {
+    width: 72px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #bbf7d0;
+}
+
+.tpl-fresh .fresh-header h1 {
+    font-size: 26px;
+    color: #166534;
+    margin-bottom: 2px;
+}
+
+.tpl-fresh .fresh-target {
+    font-size: 14px;
+    color: #16a34a;
+    font-weight: 500;
+}
+
+.tpl-fresh .fresh-contacts {
+    text-align: right;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.tpl-fresh .fresh-body {
+    padding: 24px 36px;
+}
+
+.tpl-fresh .fresh-section {
+    margin-bottom: 18px;
+}
+
+.tpl-fresh .fresh-section-title {
+    font-size: 15px;
+    color: #166534;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tpl-fresh .fresh-item {
+    margin-bottom: 12px;
+}
+
+.tpl-fresh .fresh-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.tpl-fresh .fresh-item-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.tpl-fresh .fresh-item-date {
+    color: #888;
+    font-size: 12px;
+}
+
+.tpl-fresh .fresh-item-sub {
+    color: #555;
+    font-size: 13px;
+}
+
+.tpl-fresh .fresh-desc {
+    color: #555;
+    font-size: 13px;
+    margin-top: 4px;
+    white-space: pre-line;
+}
+
+.tpl-fresh .fresh-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tpl-fresh .fresh-skill {
+    background: #dcfce7;
+    color: #166534;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* ========== Template: Business (商务正式) ========== */
+.tpl-business {
+    padding: 0;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.tpl-business .biz-header {
+    background: #1e293b;
+    color: #fff;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tpl-business .biz-photo img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid #475569;
+}
+
+.tpl-business .biz-header-info h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.tpl-business .biz-target {
+    font-size: 15px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+.tpl-business .biz-contact {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: #cbd5e1;
+    flex-wrap: wrap;
+}
+
+.tpl-business .biz-body {
+    padding: 24px 36px;
+}
+
+.tpl-business .biz-section {
+    margin-bottom: 20px;
+}
+
+.tpl-business .biz-section-title {
+    font-size: 16px;
+    color: #1e293b;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #1e293b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.tpl-business .biz-item {
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-left: 3px solid #e2e8f0;
+}
+
+.tpl-business .biz-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.tpl-business .biz-item-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.tpl-business .biz-item-date {
+    color: #888;
+    font-size: 12px;
+}
+
+.tpl-business .biz-item-sub {
+    color: #555;
+    font-size: 13px;
+}
+
+.tpl-business .biz-desc {
+    color: #555;
+    font-size: 13px;
+    margin-top: 4px;
+    white-space: pre-line;
+}
+
+.tpl-business .biz-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tpl-business .biz-skill {
+    background: #1e293b;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
 /* ========== Empty State ========== */
 .empty-hint {
     color: #bbb;
