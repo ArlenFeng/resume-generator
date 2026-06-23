@@ -3,6 +3,8 @@
 const STORAGE_KEY = 'resume_generator_data';
 let currentTemplate = 'classic';
 let photoData = ''; // base64 data URL
+let accentColor = '#2563eb';
+let fontFamily = 'Microsoft YaHei';
 
 // ========== Initialize ==========
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +37,20 @@ function bindEvents() {
     document.getElementById('btn-download').addEventListener('click', downloadPDF);
     document.getElementById('btn-fill-demo').addEventListener('click', fillDemo);
     document.getElementById('btn-clear').addEventListener('click', clearAll);
+
+    // Color picker
+    document.getElementById('color-picker').addEventListener('input', (e) => {
+        accentColor = e.target.value;
+        renderPreview();
+        saveData();
+    });
+
+    // Font select
+    document.getElementById('font-select').addEventListener('change', (e) => {
+        fontFamily = e.target.value;
+        renderPreview();
+        saveData();
+    });
 
     // Photo upload
     const photoInput = document.getElementById('photo-input');
@@ -71,6 +87,10 @@ function bindEvents() {
 function renderPreview() {
     const data = collectData();
     const preview = document.getElementById('resume-preview');
+    // Set CSS variables for accent color and font
+    preview.style.setProperty('--accent', accentColor);
+    preview.style.setProperty('--accent-light', accentColor + '20');
+    preview.style.fontFamily = fontFamily;
     preview.innerHTML = Templates[currentTemplate](data);
 }
 
@@ -88,7 +108,13 @@ function collectData() {
         education: collectRepeatable('education', ['school', 'major', 'degree', 'date', 'desc']),
         experience: collectRepeatable('experience', ['company', 'position', 'date', 'desc']),
         projects: collectRepeatable('project', ['name', 'role', 'date', 'desc']),
-        skills: val('skills').split(/[,，]/).map(s => s.trim()).filter(Boolean)
+        skills: val('skills').split(/[,，]/).map(s => s.trim()).filter(Boolean),
+        awards: collectRepeatable('award', ['title', 'date', 'desc']),
+        certificates: val('certificates').split(/[,，]/).map(s => s.trim()).filter(Boolean),
+        languages: val('languages').split(/[,，]/).map(s => s.trim()).filter(Boolean),
+        hobbies: val('hobbies').split(/[,，]/).map(s => s.trim()).filter(Boolean),
+        accentColor: accentColor,
+        fontFamily: fontFamily
     };
 }
 
@@ -218,11 +244,36 @@ function addProject(data = {}) {
     container.appendChild(item);
 }
 
+function addAward(data = {}) {
+    const container = document.getElementById('award-list');
+    const item = document.createElement('div');
+    item.className = 'repeatable-item';
+    item.innerHTML = `
+        <button class="btn-remove" onclick="this.parentElement.remove();renderPreview();saveData();">×</button>
+        <div class="form-row">
+            <div class="form-group">
+                <label>奖项名称</label>
+                <input type="text" data-field="title" placeholder="XX奖学金 / XX竞赛获奖" value="${esc(data.title || '')}">
+            </div>
+            <div class="form-group">
+                <label>时间</label>
+                <input type="text" data-field="date" placeholder="2023.06" value="${esc(data.date || '')}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>说明（选填）</label>
+            <textarea data-field="desc" rows="2" placeholder="获奖详情...">${esc(data.desc || '')}</textarea>
+        </div>
+    `;
+    container.appendChild(item);
+}
+
 function addDefaultItems() {
     // Only add if containers are empty
     if (document.getElementById('education-list').children.length === 0) addEducation();
     if (document.getElementById('experience-list').children.length === 0) addExperience();
     if (document.getElementById('project-list').children.length === 0) addProject();
+    if (document.getElementById('award-list').children.length === 0) addAward();
 }
 
 // ========== Local Storage ==========
@@ -237,7 +288,7 @@ function loadData() {
     try {
         const data = JSON.parse(saved);
         // Basic fields
-        ['name', 'target', 'phone', 'email', 'city', 'age', 'summary', 'skills'].forEach(f => {
+        ['name', 'target', 'phone', 'email', 'city', 'age', 'summary', 'skills', 'certificates', 'languages', 'hobbies'].forEach(f => {
             const el = document.getElementById(f);
             if (el && data[f]) el.value = Array.isArray(data[f]) ? data[f].join(', ') : data[f];
         });
@@ -245,6 +296,15 @@ function loadData() {
         if (data.photo) {
             photoData = data.photo;
             updatePhotoPreview();
+        }
+        // Color & Font
+        if (data.accentColor) {
+            accentColor = data.accentColor;
+            document.getElementById('color-picker').value = accentColor;
+        }
+        if (data.fontFamily) {
+            fontFamily = data.fontFamily;
+            document.getElementById('font-select').value = fontFamily;
         }
         // Repeatable items
         if (data.education && data.education.length) {
@@ -258,6 +318,10 @@ function loadData() {
         if (data.projects && data.projects.length) {
             document.getElementById('project-list').innerHTML = '';
             data.projects.forEach(p => addProject(p));
+        }
+        if (data.awards && data.awards.length) {
+            document.getElementById('award-list').innerHTML = '';
+            data.awards.forEach(a => addAward(a));
         }
     } catch (e) {
         console.warn('Failed to load saved data:', e);
@@ -310,13 +374,17 @@ function fillDemo() {
 // ========== Clear All ==========
 function clearAll() {
     if (!confirm(t('confirmClear'))) return;
-    ['name', 'target', 'phone', 'email', 'city', 'age', 'summary', 'skills'].forEach(f => {
+    ['name', 'target', 'phone', 'email', 'city', 'age', 'summary', 'skills', 'certificates', 'languages', 'hobbies'].forEach(f => {
         const el = document.getElementById(f);
         if (el) el.value = '';
     });
     photoData = '';
     document.getElementById('photo-input').value = '';
     updatePhotoPreview();
+    accentColor = '#2563eb';
+    document.getElementById('color-picker').value = accentColor;
+    fontFamily = 'Microsoft YaHei';
+    document.getElementById('font-select').value = fontFamily;
     document.getElementById('education-list').innerHTML = '';
     document.getElementById('experience-list').innerHTML = '';
     document.getElementById('project-list').innerHTML = '';

@@ -94,6 +94,10 @@ const T = {
         sectionProjects: '项目经历',
         sectionSkills: '专业技能',
         contactInfo: '联系方式',
+        sectionAwards: '荣誉奖项',
+        sectionCertificates: '证书资质',
+        sectionLanguages: '语言能力',
+        sectionHobbies: '兴趣爱好',
 
         // Confirm
         confirmClear: '确定要清空所有内容吗？',
@@ -190,6 +194,10 @@ const T = {
         sectionProjects: 'Projects',
         sectionSkills: 'Skills',
         contactInfo: 'Contact',
+        sectionAwards: 'Awards',
+        sectionCertificates: 'Certificates',
+        sectionLanguages: 'Languages',
+        sectionHobbies: 'Interests',
 
         // Confirm
         confirmClear: 'Are you sure you want to clear everything?',

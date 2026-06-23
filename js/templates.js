@@ -85,6 +85,9 @@ const Templates = {
             html += '</div></div>';
         }
 
+        // Extra sections
+        html += renderExtraSections(data, { section: 'section', sectionTitle: 'section-title' });
+
         html += '</div>';
         return html;
     },
@@ -173,6 +176,9 @@ const Templates = {
             });
             html += '</div>';
         }
+
+        // Extra sections
+        html += renderExtraSections(data, { section: 'section', sectionTitle: 'section-title' });
 
         html += '</div></div>';
         return html;
@@ -266,6 +272,9 @@ const Templates = {
             html += '</div></div>';
         }
 
+        // Extra sections
+        html += renderExtraSections(data, { section: 'section', sectionTitle: 'section-title' });
+
         html += '</div></div>';
         return html;
     },
@@ -358,6 +367,9 @@ const Templates = {
             html += '</div></div>';
         }
 
+        // Extra sections
+        html += renderExtraSections(data, { section: 'fresh-section', sectionTitle: 'fresh-section-title', skillsList: 'fresh-skills', skillTag: 'fresh-skill' });
+
         html += '</div></div>';
         return html;
     },
@@ -447,6 +459,9 @@ const Templates = {
             html += '</div></div>';
         }
 
+        // Extra sections
+        html += renderExtraSections(data, { section: 'biz-section', sectionTitle: 'biz-section-title', skillsList: 'biz-skills', skillTag: 'biz-skill' });
+
         html += '</div></div>';
         return html;
     }
@@ -464,4 +479,51 @@ function hasItems(arr) {
     return arr && arr.length > 0 && arr.some(item => {
         return Object.values(item).some(v => v && v.trim());
     });
+}
+
+// Render new sections (awards, certificates, languages, hobbies)
+function renderExtraSections(data, style) {
+    const { awards, certificates, languages, hobbies } = data;
+    let html = '';
+
+    if (hasItems(awards)) {
+        html += `<div class="${style.section}">`;
+        html += `<div class="${style.sectionTitle}">${t('sectionAwards')}</div>`;
+        awards.forEach(a => {
+            html += `<div class="${style.item || ''}">`;
+            html += '<div class="item-header">';
+            html += `<span class="item-title">${esc(a.title)}</span>`;
+            if (a.date) html += `<span class="item-date">${esc(a.date)}</span>`;
+            html += '</div>';
+            if (a.desc) html += `<div class="item-desc">${esc(a.desc)}</div>`;
+            html += '</div>';
+        });
+        html += '</div>';
+    }
+
+    if (certificates && certificates.length) {
+        html += `<div class="${style.section}">`;
+        html += `<div class="${style.sectionTitle}">${t('sectionCertificates')}</div>`;
+        html += `<div class="${style.skillsList || 'skills-list'}">`;
+        certificates.forEach(s => { html += `<span class="${style.skillTag || 'skill-tag'}">${esc(s)}</span>`; });
+        html += '</div></div>';
+    }
+
+    if (languages && languages.length) {
+        html += `<div class="${style.section}">`;
+        html += `<div class="${style.sectionTitle}">${t('sectionLanguages')}</div>`;
+        html += `<div class="${style.skillsList || 'skills-list'}">`;
+        languages.forEach(s => { html += `<span class="${style.skillTag || 'skill-tag'}">${esc(s)}</span>`; });
+        html += '</div></div>';
+    }
+
+    if (hobbies && hobbies.length) {
+        html += `<div class="${style.section}">`;
+        html += `<div class="${style.sectionTitle}">${t('sectionHobbies')}</div>`;
+        html += `<div class="${style.skillsList || 'skills-list'}">`;
+        hobbies.forEach(s => { html += `<span class="${style.skillTag || 'skill-tag'}">${esc(s)}</span>`; });
+        html += '</div></div>';
+    }
+
+    return html;
 }
