@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历生成器 - 3秒生成精美简历，一键导出PDF</title>
+    <meta name="description" content="在线简历生成器，3个精美模板，实时预览，一键导出PDF。无需注册，免费使用。">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px 60px;
+        }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .hero-badges {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .hero-badges span {
+            margin: 0 12px;
+        }
+
+        /* Features */
+        .features {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .features h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .feature-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        .feature-card p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Templates Preview */
+        .templates {
+            background: #fff;
+            padding: 60px 20px;
+        }
+        .templates h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .templates .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .template-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .template-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .template-card:hover {
+            transform: scale(1.03);
+        }
+        .template-card img {
+            width: 100%;
+            display: block;
+        }
+        .template-card .label {
+            background: #f8f9ff;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* How to use */
+        .howto {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .howto h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .step-num {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-text h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        .step-text p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* CTA Bottom */
+        .cta-bottom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .cta-bottom h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        .cta-bottom p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 28px;
+        }
+        .cta-bottom .hero-cta {
+            background: #fff;
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 28px; }
+            .feature-grid, .template-grid { grid-template-columns: 1fr; }
+            .hero { padding: 50px 20px 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>📄 简历生成器</h1>
+    <p>填写信息 → 选择模板 → 一键导出PDF<br>3分钟搞定一份专业简历</p>
+    <a href="index.html" class="hero-cta">🚀 立即制作简历</a>
+    <div class="hero-badges">
+        <span>✅ 无需注册</span>
+        <span>✅ 3个精美模板</span>
+        <span>✅ 一键导出PDF</span>
+    </div>
+</section>
+
+<section class="features">
+    <h2>为什么选择我们？</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>极速制作</h3>
+            <p>填写信息即可实时预览，3分钟完成一份专业简历</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>3种精美模板</h3>
+            <p>经典、现代、创意三种风格，满足不同岗位需求</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📷</div>
+            <h3>支持照片</h3>
+            <p>上传个人照片，简历更完整、更专业</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>自动保存</h3>
+            <p>数据保存在本地，刷新页面也不会丢失</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>PDF导出</h3>
+            <p>一键生成高清PDF，直接投递使用</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>隐私安全</h3>
+            <p>所有数据仅存在你的浏览器，不会上传到任何服务器</p>
+        </div>
+    </div>
+</section>
+
+<section class="templates">
+    <h2>3种模板，覆盖所有场景</h2>
+    <p class="subtitle">点击下方按钮立即体验</p>
+    <div class="template-grid">
+        <div class="template-card">
+            <div style="background:#eef2ff;padding:60px 20px;text-align:center;">
+                <div style="font-size:48px;">📋</div>
+                <div style="font-size:14px;color:#4f46e5;margin-top:8px;">经典简洁</div>
+            </div>
+            <div class="label">适合正式岗位投递</div>
+        </div>
+        <div class="template-card">
+            <div style="background:#1e293b;padding:60px 20px;text-align:center;">
+                <div style="font-size:48px;">🏢</div>
+                <div style="font-size:14px;color:#93c5fd;margin-top:8px;">现代双栏</div>
+            </div>
+            <div class="label">信息密度高，视觉清晰</div>
+        </div>
+        <div class="template-card">
+            <div style="background:linear-gradient(135deg,#667eea,#764ba2);padding:60px 20px;text-align:center;">
+                <div style="font-size:48px;">🎨</div>
+                <div style="font-size:14px;color:#fff;margin-top:8px;">创意设计</div>
+            </div>
+            <div class="label">适合设计/创意类岗位</div>
+        </div>
+    </div>
+</section>
+
+<section class="howto">
+    <h2>如何使用？</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+                <h3>填写个人信息</h3>
+                <p>姓名、联系方式、教育经历、工作经历、技能等</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+                <h3>选择模板风格</h3>
+                <p>经典、现代、创意三种风格一键切换，实时预览效果</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+                <h3>下载PDF</h3>
+                <p>满意后点击下载，自动生成高清PDF文件</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-bottom">
+    <h2>开始制作你的简历</h2>
+    <p>完全免费，无需注册，打开即用</p>
+    <a href="index.html" class="hero-cta">🚀 立即开始</a>
+</section>
+
+<footer>
+    <p>© 2026 简历生成器 · 数据仅存在本地浏览器</p>
+</footer>
+
+</body>
+</html>

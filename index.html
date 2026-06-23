@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历生成器 - 一键生成精美简历</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- html2pdf.js for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <header class="top-bar">
+        <h1>📄 简历生成器</h1>
+        <div class="top-actions">
+            <button id="btn-fill-demo" class="btn btn-outline">📋 填充示例</button>
+            <button id="btn-clear" class="btn btn-outline btn-danger">🗑️ 清空</button>
+            <button id="btn-download" class="btn btn-primary">⬇️ 下载 PDF</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Left: Form -->
+        <aside class="form-panel">
+            <div class="form-section">
+                <h3>👤 基本信息</h3>
+                <div class="photo-upload-area">
+                    <div class="photo-preview" id="photo-preview">
+                        <span class="photo-placeholder">📷<br>点击上传照片</span>
+                    </div>
+                    <input type="file" id="photo-input" accept="image/*" style="display:none">
+                    <button class="btn btn-outline btn-sm" id="btn-upload-photo">上传照片</button>
+                    <button class="btn btn-outline btn-sm btn-danger" id="btn-remove-photo" style="display:none">移除</button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" id="name" placeholder="张三">
+                    </div>
+                    <div class="form-group">
+                        <label>求职意向</label>
+                        <input type="text" id="target" placeholder="前端开发工程师">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>手机</label>
+                        <input type="tel" id="phone" placeholder="138-0000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label>邮箱</label>
+                        <input type="email" id="email" placeholder="zhangsan@email.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>城市</label>
+                        <input type="text" id="city" placeholder="北京">
+                    </div>
+                    <div class="form-group">
+                        <label>年龄/生日</label>
+                        <input type="text" id="age" placeholder="22岁 / 2002.06">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>个人简介</label>
+                    <textarea id="summary" rows="3" placeholder="简要介绍自己的优势和特点..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🎓 教育经历</h3>
+                <div id="education-list"></div>
+                <button class="btn btn-add" onclick="addEducation()">+ 添加教育经历</button>
+            </div>
+
+            <div class="form-section">
+                <h3>💼 工作/实习经历</h3>
+                <div id="experience-list"></div>
+                <button class="btn btn-add" onclick="addExperience()">+ 添加工作经历</button>
+            </div>
+
+            <div class="form-section">
+                <h3>🚀 项目经历</h3>
+                <div id="project-list"></div>
+                <button class="btn btn-add" onclick="addProject()">+ 添加项目</button>
+            </div>
+
+            <div class="form-section">
+                <h3>🛠️ 技能</h3>
+                <div class="form-group">
+                    <label>技能标签（用逗号分隔）</label>
+                    <input type="text" id="skills" placeholder="HTML, CSS, JavaScript, React, Python">
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right: Preview -->
+        <section class="preview-panel">
+            <div class="template-bar">
+                <span>模板风格：</span>
+                <button class="template-btn active" data-template="classic">经典简洁</button>
+                <button class="template-btn" data-template="modern">现代双栏</button>
+                <button class="template-btn" data-template="creative">创意设计</button>
+            </div>
+            <div class="preview-wrapper">
+                <div id="resume-preview" class="resume-page"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/templates.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
