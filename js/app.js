@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadData();
     bindEvents();
     addDefaultItems();
+    updateAllText();
     renderPreview();
 });
 
@@ -96,10 +97,10 @@ function updatePhotoPreview() {
     const preview = document.getElementById('photo-preview');
     const btnRemove = document.getElementById('btn-remove-photo');
     if (photoData) {
-        preview.innerHTML = `<img src="${photoData}" alt="照片">`;
+        preview.innerHTML = `<img src="${photoData}" alt="photo">`;
         btnRemove.style.display = '';
     } else {
-        preview.innerHTML = '<span class="photo-placeholder">📷<br>点击上传照片</span>';
+        preview.innerHTML = `<span class="photo-placeholder">${t('photoPlaceholder')}</span>`;
         btnRemove.style.display = 'none';
     }
 }
@@ -135,27 +136,27 @@ function addEducation(data = {}) {
         <button class="btn-remove" onclick="this.parentElement.remove();renderPreview();saveData();">×</button>
         <div class="form-row">
             <div class="form-group">
-                <label>学校</label>
-                <input type="text" data-field="school" placeholder="XX大学" value="${esc(data.school || '')}">
+                <label>${t('school')}</label>
+                <input type="text" data-field="school" placeholder="${t('schoolPH')}" value="${esc(data.school || '')}">
             </div>
             <div class="form-group">
-                <label>时间</label>
-                <input type="text" data-field="date" placeholder="2020.09 - 2024.06" value="${esc(data.date || '')}">
+                <label>${t('date')}</label>
+                <input type="text" data-field="date" placeholder="${t('datePH')}" value="${esc(data.date || '')}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label>专业</label>
-                <input type="text" data-field="major" placeholder="计算机科学与技术" value="${esc(data.major || '')}">
+                <label>${t('major')}</label>
+                <input type="text" data-field="major" placeholder="${t('majorPH')}" value="${esc(data.major || '')}">
             </div>
             <div class="form-group">
-                <label>学历</label>
-                <input type="text" data-field="degree" placeholder="本科" value="${esc(data.degree || '')}">
+                <label>${t('degree')}</label>
+                <input type="text" data-field="degree" placeholder="${t('degreePH')}" value="${esc(data.degree || '')}">
             </div>
         </div>
         <div class="form-group">
-            <label>补充说明（选填）</label>
-            <textarea data-field="desc" rows="2" placeholder="GPA、奖学金、相关课程等">${esc(data.desc || '')}</textarea>
+            <label>${t('eduDesc')}</label>
+            <textarea data-field="desc" rows="2" placeholder="${t('eduDescPH')}">${esc(data.desc || '')}</textarea>
         </div>
     `;
     container.appendChild(item);
@@ -169,21 +170,21 @@ function addExperience(data = {}) {
         <button class="btn-remove" onclick="this.parentElement.remove();renderPreview();saveData();">×</button>
         <div class="form-row">
             <div class="form-group">
-                <label>公司</label>
-                <input type="text" data-field="company" placeholder="XX科技有限公司" value="${esc(data.company || '')}">
+                <label>${t('company')}</label>
+                <input type="text" data-field="company" placeholder="${t('companyPH')}" value="${esc(data.company || '')}">
             </div>
             <div class="form-group">
-                <label>时间</label>
-                <input type="text" data-field="date" placeholder="2023.07 - 2023.09" value="${esc(data.date || '')}">
+                <label>${t('date')}</label>
+                <input type="text" data-field="date" placeholder="${t('expDatePH')}" value="${esc(data.date || '')}">
             </div>
         </div>
         <div class="form-group">
-            <label>职位</label>
-            <input type="text" data-field="position" placeholder="前端开发实习生" value="${esc(data.position || '')}">
+            <label>${t('position')}</label>
+            <input type="text" data-field="position" placeholder="${t('positionPH')}" value="${esc(data.position || '')}">
         </div>
         <div class="form-group">
-            <label>工作内容</label>
-            <textarea data-field="desc" rows="3" placeholder="负责XX项目开发，使用XX技术...">${esc(data.desc || '')}</textarea>
+            <label>${t('expDesc')}</label>
+            <textarea data-field="desc" rows="3" placeholder="${t('expDescPH')}">${esc(data.desc || '')}</textarea>
         </div>
     `;
     container.appendChild(item);
@@ -197,21 +198,21 @@ function addProject(data = {}) {
         <button class="btn-remove" onclick="this.parentElement.remove();renderPreview();saveData();">×</button>
         <div class="form-row">
             <div class="form-group">
-                <label>项目名称</label>
-                <input type="text" data-field="name" placeholder="XX管理系统" value="${esc(data.name || '')}">
+                <label>${t('projectName')}</label>
+                <input type="text" data-field="name" placeholder="${t('projectNamePH')}" value="${esc(data.name || '')}">
             </div>
             <div class="form-group">
-                <label>时间</label>
-                <input type="text" data-field="date" placeholder="2023.03 - 2023.06" value="${esc(data.date || '')}">
+                <label>${t('date')}</label>
+                <input type="text" data-field="date" placeholder="${t('projDatePH')}" value="${esc(data.date || '')}">
             </div>
         </div>
         <div class="form-group">
-            <label>角色</label>
-            <input type="text" data-field="role" placeholder="前端负责人" value="${esc(data.role || '')}">
+            <label>${t('role')}</label>
+            <input type="text" data-field="role" placeholder="${t('rolePH')}" value="${esc(data.role || '')}">
         </div>
         <div class="form-group">
-            <label>项目描述</label>
-            <textarea data-field="desc" rows="3" placeholder="项目介绍、技术栈、成果...">${esc(data.desc || '')}</textarea>
+            <label>${t('projDesc')}</label>
+            <textarea data-field="desc" rows="3" placeholder="${t('projDescPH')}">${esc(data.desc || '')}</textarea>
         </div>
     `;
     container.appendChild(item);
@@ -308,7 +309,7 @@ function fillDemo() {
 
 // ========== Clear All ==========
 function clearAll() {
-    if (!confirm('确定要清空所有内容吗？')) return;
+    if (!confirm(t('confirmClear'))) return;
     ['name', 'target', 'phone', 'email', 'city', 'age', 'summary', 'skills'].forEach(f => {
         const el = document.getElementById(f);
         if (el) el.value = '';

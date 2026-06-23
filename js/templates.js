@@ -8,8 +8,8 @@ const Templates = {
 
         // Header
         html += '<div class="header">';
-        if (photo) html += `<div class="header-photo"><img src="${photo}" alt="照片"></div>`;
-        html += `<h1>${esc(name) || '你的姓名'}</h1>`;
+        if (photo) html += `<div class="header-photo"><img src="${photo}" alt="photo"></div>`;
+        html += `<h1>${esc(name) || t('yourName')}</h1>`;
         if (target) html += `<div class="target">${esc(target)}</div>`;
         const contacts = [];
         if (phone) contacts.push('📱 ' + esc(phone));
@@ -22,7 +22,7 @@ const Templates = {
         // Summary
         if (summary) {
             html += '<div class="section">';
-            html += '<div class="section-title">个人简介</div>';
+            html += `<div class="section-title">${t('sectionSummary')}</div>`;
             html += `<div class="item-desc">${esc(summary)}</div>`;
             html += '</div>';
         }
@@ -30,7 +30,7 @@ const Templates = {
         // Education
         if (hasItems(education)) {
             html += '<div class="section">';
-            html += '<div class="section-title">教育经历</div>';
+            html += `<div class="section-title">${t('sectionEducation')}</div>`;
             education.forEach(e => {
                 html += '<div class="item-header">';
                 html += `<div><span class="item-title">${esc(e.school)}</span>`;
@@ -47,7 +47,7 @@ const Templates = {
         // Experience
         if (hasItems(experience)) {
             html += '<div class="section">';
-            html += '<div class="section-title">工作/实习经历</div>';
+            html += `<div class="section-title">${t('sectionExperience')}</div>`;
             experience.forEach(e => {
                 html += '<div class="item-header">';
                 html += `<div><span class="item-title">${esc(e.company)}</span>`;
@@ -63,7 +63,7 @@ const Templates = {
         // Projects
         if (hasItems(projects)) {
             html += '<div class="section">';
-            html += '<div class="section-title">项目经历</div>';
+            html += `<div class="section-title">${t('sectionProjects')}</div>`;
             projects.forEach(p => {
                 html += '<div class="item-header">';
                 html += `<div><span class="item-title">${esc(p.name)}</span>`;
@@ -79,7 +79,7 @@ const Templates = {
         // Skills
         if (skills && skills.length) {
             html += '<div class="section">';
-            html += '<div class="section-title">专业技能</div>';
+            html += `<div class="section-title">${t('sectionSkills')}</div>`;
             html += '<div class="skills-list">';
             skills.forEach(s => { html += `<span class="skill-tag">${esc(s)}</span>`; });
             html += '</div></div>';
@@ -98,12 +98,12 @@ const Templates = {
         html += '<div class="sidebar">';
         html += '<div class="avatar-area">';
         if (photo) html += `<div class="sidebar-photo"><img src="${photo}" alt="照片"></div>`;
-        html += `<h1>${esc(name) || '你的姓名'}</h1>`;
+        html += `<h1>${esc(name) || t('yourName')}</h1>`;
         if (target) html += `<div class="target">${esc(target)}</div>`;
         html += '</div>';
 
         // Contact info in sidebar
-        html += '<div class="info-block"><h3>联系方式</h3>';
+        html += `<div class="info-block"><h3>${t('contactInfo')}</h3>`;
         if (phone) html += `<div class="info-item">📱 ${esc(phone)}</div>`;
         if (email) html += `<div class="info-item">✉️ ${esc(email)}</div>`;
         if (city) html += `<div class="info-item">📍 ${esc(city)}</div>`;
@@ -112,7 +112,7 @@ const Templates = {
 
         // Skills in sidebar
         if (skills && skills.length) {
-            html += '<div class="info-block"><h3>专业技能</h3>';
+            html += `<div class="info-block"><h3>${t('sectionSkills')}</h3>`;
             skills.forEach(s => { html += `<span class="skill-tag">${esc(s)}</span>`; });
             html += '</div>';
         }
@@ -123,14 +123,14 @@ const Templates = {
 
         if (summary) {
             html += '<div class="section">';
-            html += '<div class="section-title">个人简介</div>';
+            html += `<div class="section-title">${t('sectionSummary')}</div>`;
             html += `<div class="item-desc">${esc(summary)}</div>`;
             html += '</div>';
         }
 
         if (hasItems(education)) {
             html += '<div class="section">';
-            html += '<div class="section-title">教育经历</div>';
+            html += `<div class="section-title">${t('sectionEducation')}</div>`;
             education.forEach(e => {
                 html += '<div class="item-header">';
                 html += `<div><span class="item-title">${esc(e.school)}</span>`;
@@ -146,7 +146,7 @@ const Templates = {
 
         if (hasItems(experience)) {
             html += '<div class="section">';
-            html += '<div class="section-title">工作/实习经历</div>';
+            html += `<div class="section-title">${t('sectionExperience')}</div>`;
             experience.forEach(e => {
                 html += '<div class="item-header">';
                 html += `<div><span class="item-title">${esc(e.company)}</span>`;
@@ -161,7 +161,7 @@ const Templates = {
 
         if (hasItems(projects)) {
             html += '<div class="section">';
-            html += '<div class="section-title">项目经历</div>';
+            html += `<div class="section-title">${t('sectionProjects')}</div>`;
             projects.forEach(p => {
                 html += '<div class="item-header">';
                 html += `<div><span class="item-title">${esc(p.name)}</span>`;
@@ -186,7 +186,7 @@ const Templates = {
         // Hero header
         html += '<div class="hero">';
         if (photo) html += `<div class="hero-photo"><img src="${photo}" alt="照片"></div>`;
-        html += `<h1>${esc(name) || '你的姓名'}</h1>`;
+        html += `<h1>${esc(name) || t('yourName')}</h1>`;
         if (target) html += `<div class="target">${esc(target)}</div>`;
         const contacts = [];
         if (phone) contacts.push('📱 ' + esc(phone));
@@ -201,14 +201,14 @@ const Templates = {
 
         if (summary) {
             html += '<div class="section">';
-            html += '<div class="section-title">个人简介</div>';
+            html += `<div class="section-title">${t('sectionSummary')}</div>`;
             html += `<div class="item-desc">${esc(summary)}</div>`;
             html += '</div>';
         }
 
         if (hasItems(education)) {
             html += '<div class="section">';
-            html += '<div class="section-title">教育经历</div>';
+            html += `<div class="section-title">${t('sectionEducation')}</div>`;
             education.forEach(e => {
                 html += '<div class="card">';
                 html += '<div class="item-header">';
@@ -226,7 +226,7 @@ const Templates = {
 
         if (hasItems(experience)) {
             html += '<div class="section">';
-            html += '<div class="section-title">工作/实习经历</div>';
+            html += `<div class="section-title">${t('sectionExperience')}</div>`;
             experience.forEach(e => {
                 html += '<div class="card">';
                 html += '<div class="item-header">';
@@ -243,7 +243,7 @@ const Templates = {
 
         if (hasItems(projects)) {
             html += '<div class="section">';
-            html += '<div class="section-title">项目经历</div>';
+            html += `<div class="section-title">${t('sectionProjects')}</div>`;
             projects.forEach(p => {
                 html += '<div class="card">';
                 html += '<div class="item-header">';
@@ -260,7 +260,7 @@ const Templates = {
 
         if (skills && skills.length) {
             html += '<div class="section">';
-            html += '<div class="section-title">专业技能</div>';
+            html += `<div class="section-title">${t('sectionSkills')}</div>`;
             html += '<div class="skills-list">';
             skills.forEach(s => { html += `<span class="skill-tag">${esc(s)}</span>`; });
             html += '</div></div>';
@@ -280,7 +280,7 @@ const Templates = {
         html += '<div class="fresh-header-left">';
         if (photo) html += `<div class="fresh-photo"><img src="${photo}" alt="照片"></div>`;
         html += '<div>';
-        html += `<h1>${esc(name) || '你的姓名'}</h1>`;
+        html += `<h1>${esc(name) || t('yourName')}</h1>`;
         if (target) html += `<div class="fresh-target">${esc(target)}</div>`;
         html += '</div></div>';
         const contacts = [];
@@ -296,14 +296,14 @@ const Templates = {
 
         if (summary) {
             html += '<div class="fresh-section">';
-            html += '<div class="fresh-section-title">💡 个人简介</div>';
+            html += `<div class="fresh-section-title">💡 ${t('sectionSummary')}</div>`;
             html += `<div class="fresh-desc">${esc(summary)}</div>`;
             html += '</div>';
         }
 
         if (hasItems(education)) {
             html += '<div class="fresh-section">';
-            html += '<div class="fresh-section-title">🎓 教育经历</div>';
+            html += `<div class="fresh-section-title">🎓 ${t('sectionEducation')}</div>`;
             education.forEach(e => {
                 html += '<div class="fresh-item">';
                 html += '<div class="fresh-item-top">';
@@ -320,7 +320,7 @@ const Templates = {
 
         if (hasItems(experience)) {
             html += '<div class="fresh-section">';
-            html += '<div class="fresh-section-title">💼 工作/实习经历</div>';
+            html += `<div class="fresh-section-title">💼 ${t('sectionExperience')}</div>`;
             experience.forEach(e => {
                 html += '<div class="fresh-item">';
                 html += '<div class="fresh-item-top">';
@@ -336,7 +336,7 @@ const Templates = {
 
         if (hasItems(projects)) {
             html += '<div class="fresh-section">';
-            html += '<div class="fresh-section-title">🚀 项目经历</div>';
+            html += `<div class="fresh-section-title">🚀 ${t('sectionProjects')}</div>`;
             projects.forEach(p => {
                 html += '<div class="fresh-item">';
                 html += '<div class="fresh-item-top">';
@@ -352,7 +352,7 @@ const Templates = {
 
         if (skills && skills.length) {
             html += '<div class="fresh-section">';
-            html += '<div class="fresh-section-title">🛠️ 专业技能</div>';
+            html += `<div class="fresh-section-title">🛠️ ${t('sectionSkills')}</div>`;
             html += '<div class="fresh-skills">';
             skills.forEach(s => { html += `<span class="fresh-skill">${esc(s)}</span>`; });
             html += '</div></div>';
@@ -371,7 +371,7 @@ const Templates = {
         html += '<div class="biz-header">';
         if (photo) html += `<div class="biz-photo"><img src="${photo}" alt="照片"></div>`;
         html += '<div class="biz-header-info">';
-        html += `<h1>${esc(name) || '你的姓名'}</h1>`;
+        html += `<h1>${esc(name) || t('yourName')}</h1>`;
         if (target) html += `<div class="biz-target">${esc(target)}</div>`;
         html += '<div class="biz-contact">';
         if (phone) html += `<span>📱 ${esc(phone)}</span>`;
@@ -385,14 +385,14 @@ const Templates = {
 
         if (summary) {
             html += '<div class="biz-section">';
-            html += '<div class="biz-section-title">个人简介</div>';
+            html += `<div class="biz-section-title">${t('sectionSummary')}</div>`;
             html += `<div class="biz-desc">${esc(summary)}</div>`;
             html += '</div>';
         }
 
         if (hasItems(education)) {
             html += '<div class="biz-section">';
-            html += '<div class="biz-section-title">教育经历</div>';
+            html += `<div class="biz-section-title">${t('sectionEducation')}</div>`;
             education.forEach(e => {
                 html += '<div class="biz-item">';
                 html += '<div class="biz-item-header">';
@@ -409,7 +409,7 @@ const Templates = {
 
         if (hasItems(experience)) {
             html += '<div class="biz-section">';
-            html += '<div class="biz-section-title">工作/实习经历</div>';
+            html += `<div class="biz-section-title">${t('sectionExperience')}</div>`;
             experience.forEach(e => {
                 html += '<div class="biz-item">';
                 html += '<div class="biz-item-header">';
@@ -425,7 +425,7 @@ const Templates = {
 
         if (hasItems(projects)) {
             html += '<div class="biz-section">';
-            html += '<div class="biz-section-title">项目经历</div>';
+            html += `<div class="biz-section-title">${t('sectionProjects')}</div>`;
             projects.forEach(p => {
                 html += '<div class="biz-item">';
                 html += '<div class="biz-item-header">';
@@ -441,7 +441,7 @@ const Templates = {
 
         if (skills && skills.length) {
             html += '<div class="biz-section">';
-            html += '<div class="biz-section-title">专业技能</div>';
+            html += `<div class="biz-section-title">${t('sectionSkills')}</div>`;
             html += '<div class="biz-skills">';
             skills.forEach(s => { html += `<span class="biz-skill">${esc(s)}</span>`; });
             html += '</div></div>';
